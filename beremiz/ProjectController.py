@@ -159,13 +159,18 @@ class ProjectController(ConfigTreeNode, PLCControler):
         self.StatusTimer = None
         
         if frame is not None:
-            frame.LogViewer.SetLogSource(self._connector)
+            
             
             # Timer to pull PLC status
             ID_STATUSTIMER = wx.NewId()
-            self.StatusTimer = wx.Timer(self.AppFrame, ID_STATUSTIMER)
+            self.StatusTimer = wx.Timer(self.AppFrame, -1)
             self.AppFrame.Bind(wx.EVT_TIMER, self.PullPLCStatusProc, self.StatusTimer)
-        
+
+            if self._connector is not None:
+                frame.LogViewer.SetLogSource(self._connector)
+                self.StatusTimer.Start(milliseconds=500, oneShot=False)
+
+
             self.RefreshConfNodesBlockLists()
 
     def ResetAppFrame(self, logger):
@@ -1201,9 +1206,11 @@ class ProjectController(ConfigTreeNode, PLCControler):
                 Idxs.sort()
                 self.TracedIECPath = zip(*Idxs)[3]
                 self._connector.SetTraceVariablesList(zip(*zip(*Idxs)[0:3]))
+                time.sleep(0.1)
             else:
                 self.TracedIECPath = []
                 self._connector.SetTraceVariablesList([])
+                time.sleep(0.1)
             self.IECdebug_lock.release()
     
     def IsPLCStarted(self):
@@ -1332,6 +1339,7 @@ class ProjectController(ConfigTreeNode, PLCControler):
         self.debug_break = False
         debug_getvar_retry = 0
         while (not self.debug_break) and (self._connector is not None):
+            time.sleep(0.1)
             Trace = self._connector.GetTraceVariables()
             if(Trace):
                 plc_status, debug_tick, debug_vars = Trace
@@ -1357,7 +1365,7 @@ class ProjectController(ConfigTreeNode, PLCControler):
                     wx.CallAfter(self.RegisterDebugVarToConnector)
                 if debug_getvar_retry != 0:
                     # Be patient, tollerate PLC to come up before debugging
-                    time.sleep(0.1)
+                    time.sleep(0.5)
             else:
                 self.debug_break = True
         self.logger.write(_("Debugger disabled\n"))
@@ -1389,9 +1397,11 @@ class ProjectController(ConfigTreeNode, PLCControler):
         Start PLC
         """
         if self.GetIECProgramsAndVariables():
+            self._connect_debug()
             self._connector.StartPLC()
             self.logger.write(_("Starting PLC\n"))
-            self._connect_debug()
+            #time.sleep(1)
+            #self._connect_debug()
         else:
             self.logger.write_error(_("Couldn't start PLC !\n"))
         wx.CallAfter(self.UpdateMethodsFromPLCStatus)
@@ -1404,7 +1414,7 @@ class ProjectController(ConfigTreeNode, PLCControler):
             self.logger.write_error(_("Couldn't stop PLC !\n"))
 
         # debugthread should die on his own
-        #self.KillDebugThread()
+        # self.KillDebugThread()
         
         wx.CallAfter(self.UpdateMethodsFromPLCStatus)
 
@@ -1413,11 +1423,14 @@ class ProjectController(ConfigTreeNode, PLCControler):
         if self.AppFrame is not None:
             self.AppFrame.LogViewer.SetLogSource(connector)
         if connector is not None:
-            # Start the status Timer
-            self.StatusTimer.Start(milliseconds=500, oneShot=False)
+            if self.StatusTimer is not None:
+                # Start the status Timer
+                wx.Yield()
+                self.StatusTimer.Start(milliseconds=500, oneShot=False)
         else:
-            # Stop the status Timer
-            self.StatusTimer.Stop()
+            if self.StatusTimer is not None:
+                # Stop the status Timer
+                self.StatusTimer.Stop()
             if update_status:
                 wx.CallAfter(self.UpdateMethodsFromPLCStatus)
 

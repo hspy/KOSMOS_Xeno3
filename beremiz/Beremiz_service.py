@@ -23,8 +23,8 @@
 #Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import os, sys, getopt
-from threading import Thread
-
+from threading import Thread, currentThread, Semaphore, Lock
+from runtime.xenomai import TryPreloadXenomai
 def usage():
     print """
 Usage of Beremiz PLC execution service :\n
@@ -36,12 +36,13 @@ Usage of Beremiz PLC execution service :\n
            -a        - autostart PLC (0:disable 1:enable) (default:0)
            -x        - enable/disable wxTaskbarIcon (0:disable 1:enable) (default:1)
            -t        - enable/disable Twisted web interface (0:disable 1:enable) (default:1)
-           
+           -c        - enable xenomai3 cobalt (preload Xenomai_init)
            working_dir - directory where are stored PLC files
 """%sys.argv[0]
 
 try:
-    opts, argv = getopt.getopt(sys.argv[1:], "i:p:n:x:t:a:h")
+    opts, argv = getopt.getopt(sys.argv[1:], "i:p:n:x:t:a:c:h")
+    #opts, argv = getopt.getopt(sys.argv[1:], "i:p:n:x:t:a:h")
 except getopt.GetoptError, err:
     # print help information and exit:
     print str(err) # will print something like "option -a not recognized"
@@ -57,6 +58,7 @@ enablewx = True
 havewx = False
 enabletwisted = True
 havetwisted = False
+cobalt = False
 
 for o, a in opts:
     if o == "-h":
@@ -79,6 +81,8 @@ for o, a in opts:
         enabletwisted = int(a)
     elif o == "-a":
         autostart = int(a)
+    elif o == "-c":
+        cobalt = True
     else:
         usage()
         sys.exit()
@@ -92,6 +96,9 @@ elif len(argv) == 1:
 elif len(argv) == 0:
     WorkingDir = os.getcwd()
     argv=[WorkingDir]
+
+if(cobalt ==True):
+    TryPreloadXenomai()
 
 import __builtin__
 if __name__ == '__main__':
@@ -320,7 +327,8 @@ if enablewx:
                     currenticon = self.MakeIcon(defaulticon)
                 self.SetIcon(currenticon, "Beremiz Service")
 
-from runtime import PLCObject, PLCprint, ServicePublisher
+from runtime import PLCObject, PLCprint, ServicePublisher, MainWorker
+import Pyro
 import Pyro.core as pyro
 
 if not os.path.isdir(WorkingDir):
@@ -342,16 +350,35 @@ class Server():
         self.port = port
         self.workdir = workdir
         self.argv = argv
-        self.plcobj = None
         self.servicepublisher = None
         self.autostart = autostart
         self.statuschange = statuschange
         self.evaluator = evaluator
         self.website = website
+        self.plcobj = PLCObject(self)
     
-    def Loop(self):
+    def _to_be_published(self):
+        return self.servicename is not None and \
+               self.ip_addr is not None and \
+               self.ip_addr != "localhost" and \
+               self.ip_addr != "127.0.0.1"
+
+    def PrintServerInfo(self):
+        print(_("Pyro port :"), self.port)
+
+        # Beremiz IDE detects LOCAL:// runtime is ready by looking
+        # for self.workdir in the daemon's stdout.
+        print(_("Current working directory :"), self.workdir)
+
+        if self._to_be_published():
+            print(_("Publishing service on local network"))
+
+        sys.stdout.flush()
+
+
+    def Loop(self,when_ready):
         while self.continueloop:
-            self.Start()
+            self.Start(when_ready)
         
     def Restart(self):
         self.Stop()
@@ -359,13 +386,15 @@ class Server():
     def Quit(self):
         self.continueloop = False
         if self.plcobj is not None:
+            self.plcobj.StopPLC()
             self.plcobj.UnLoadPLC()
         self.Stop()
 
-    def Start(self):
+    def Start(self,when_ready):
+        Pyro.config.PYRO_MULTITHREADED = 0
         pyro.initServer()
         self.daemon=pyro.Daemon(host=self.ip_addr, port=self.port)
-        self.plcobj = PLCObject(self.workdir, self.daemon, self.argv, self.statuschange, self.evaluator, self.website)
+        self.daemon.setTimeout(60)
         uri = self.daemon.connect(self.plcobj,"PLCObject")
     
         print "Pyro port :",self.port
@@ -374,20 +403,16 @@ class Server():
         
         # Configure and publish service
         # Not publish service if localhost in address params
-        if (self.servicename is not None and 
-            self.ip_addr is not None and 
-            self.ip_addr != "localhost" and 
-            self.ip_addr != "127.0.0.1"):
-            print "Publishing service on local network"
+        self.daemon.setTimeout(60)
+        self.daemon.connect(self.plcobj, "PLCObject")
+        if self._to_be_published():
             self.servicepublisher = ServicePublisher.ServicePublisher()
             self.servicepublisher.RegisterService(self.servicename, self.ip_addr, self.port)
         
-        if self.autostart and self.plcobj.GetPLCstatus()[0] != "Empty":
-            self.plcobj.StartPLC()
-        
-        sys.stdout.flush()
+        when_ready()
         
         self.daemon.requestLoop()
+        self.daemon.sock.close()
     
     def Stop(self):
         if self.plcobj is not None:
@@ -396,6 +421,13 @@ class Server():
             self.servicepublisher.UnRegisterService()
             self.servicepublisher = None
         self.daemon.shutdown(True)
+
+    def AutoLoad(self):
+        self.plcobj.AutoLoad()
+        if self.plcobj.GetPLCstatus()[0] == "Stopped":
+            if autostart:
+                self.plcobj.StartPLC()
+        self.plcobj.StatusChange()
 
 if enabletwisted:
     import warnings
@@ -608,11 +640,18 @@ else:
 
 # Exception hooks s
 import threading, traceback
-def LogException(*exp):
+def LogMessageAndException(msg, exp=None):
+    if exp is None:
+        exp = sys.exc_info()
     if pyroserver.plcobj is not None:
-        pyroserver.plcobj.LogMessage(0,'\n'.join(traceback.format_exception(*exp)))
+        pyroserver.plcobj.LogMessage(0, msg + '\n'.join(traceback.format_exception(*exp)))
     else:
+        print(msg)
         traceback.print_exception(*exp)
+
+
+def LogException(*exp):
+    LogMessageAndException("", exp)
 
 sys.excepthook = LogException
 def installThreadExcepthook():
@@ -631,9 +670,28 @@ def installThreadExcepthook():
     threading.Thread.__init__ = init
 installThreadExcepthook()
 
+
+#pyro thread position
+pyro_thread_started = Lock()
+pyro_thread_started.acquire()
+pyro_thread = Thread(target=pyroserver.Loop,
+                     kwargs=dict(when_ready=pyro_thread_started.release)) #may change to main loop?
+pyro_thread.start()
+
+# Wait for pyro thread to be effective
+pyro_thread_started.acquire()
+
+pyroserver.PrintServerInfo()
+
+
+#start pyro thread seperately
+
+
+
+
 if havetwisted or havewx:
-    pyro_thread=Thread(target=pyroserver.Loop)
-    pyro_thread.start()
+    # pyro_thread=Thread(target=pyroserver.Loop)
+    # pyro_thread.start()
 
     if havetwisted:
         reactor.run()
@@ -641,7 +699,7 @@ if havetwisted or havewx:
         app.MainLoop()
 else:
     try :
-        pyroserver.Loop()
+        MainWorker.runloop(pyroserver.AutoLoad) ## should be changed to mainloop
     except KeyboardInterrupt,e:
         pass
 pyroserver.Quit()

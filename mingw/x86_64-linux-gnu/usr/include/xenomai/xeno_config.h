@@ -1,5 +1,5 @@
-/* src/include/xeno_config.h.  Generated from xeno_config.h.in by configure.  */
-/* src/include/xeno_config.h.in.  Generated from configure.in by autoheader.  */
+/* include/xeno_config.h.  Generated from xeno_config.h.in by configure.  */
+/* include/xeno_config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* config */
 #define CONFIG_MMU 1
@@ -8,60 +8,120 @@
 #define CONFIG_SMP 1
 
 /* config */
-#define CONFIG_X86_TSC 1
+#define CONFIG_XENO_ASYNC_CANCEL 1
 
 /* config */
-/* #undef CONFIG_XENO_ARM_ARCH */
-
-/* config */
-/* #undef CONFIG_XENO_ARM_EABI */
-
-/* config */
-/* #undef CONFIG_XENO_ARM_SA1100 */
+#define CONFIG_XENO_BUILD_ARGS " '--with-core=cobalt' '--enable-smp' '--enable-pshared' '--enable-dlopen-libs' '--enable-debug' '--enable-assert' '--enable-async-cancel' 'PKG_CONFIG_PATH=:/usr/xenomai/lib/pkgconfig'"
 
 /* Build system alias */
 #define CONFIG_XENO_BUILD_STRING "x86_64-pc-linux-gnu"
 
+/* config */
+#define CONFIG_XENO_COBALT 1
+
 /* Compiler */
-#define CONFIG_XENO_COMPILER "gcc version 4.4.5 (Debian 4.4.5-8) "
+#define CONFIG_XENO_COMPILER "gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) "
 
 /* config */
-/* #undef CONFIG_XENO_CPU_XSC3 */
+/* #undef CONFIG_XENO_COPPERPLATE_CLOCK_RESTRICTED */
+
+/* config */
+#define CONFIG_XENO_DEBUG 1
+
+/* config */
+/* #undef CONFIG_XENO_DEBUG_FULL */
 
 /* config */
 #define CONFIG_XENO_DEFAULT_PERIOD 100000
 
 /* config */
-#define CONFIG_XENO_FASTSYNCH 1
+#define CONFIG_XENO_FORTIFY 1
+
+/* config */
+#define CONFIG_XENO_HEAPMEM 1
 
 /* Host system alias */
 #define CONFIG_XENO_HOST_STRING "x86_64-pc-linux-gnu"
 
 /* config */
+/* #undef CONFIG_XENO_LAZY_SETSCHED */
+
+/* config */
 #define CONFIG_XENO_LIBS_DLOPEN 1
 
 /* config */
-/* #undef CONFIG_XENO_POSIX_AUTO_MLOCKALL */
+#define CONFIG_XENO_LORES_CLOCK_DISABLED 1
 
 /* config */
-/* #undef CONFIG_XENO_PSOS_AUTO_MLOCKALL */
+/* #undef CONFIG_XENO_MERCURY */
 
 /* config */
-#define CONFIG_XENO_REVISION_LEVEL 6
+#define CONFIG_XENO_PREFIX "/usr/xenomai"
 
 /* config */
-/* #undef CONFIG_XENO_UITRON_AUTO_MLOCKALL */
+#define CONFIG_XENO_PSHARED 1
 
 /* config */
-#define CONFIG_XENO_VERSION_MAJOR 2
+#define CONFIG_XENO_RAW_CLOCK_ENABLED 1
 
 /* config */
-#define CONFIG_XENO_VERSION_MINOR 5
+/* #undef CONFIG_XENO_REGISTRY */
 
 /* config */
-#define CONFIG_XENO_X86_SEP 1
+/* #undef CONFIG_XENO_REGISTRY_ROOT */
+
+/* config */
+#define CONFIG_XENO_REVISION_LEVEL 2
+
+/* config */
+#define CONFIG_XENO_SANITY 1
+
+/* config */
+/* #undef CONFIG_XENO_TLSF */
+
+/* TLS model */
+#define CONFIG_XENO_TLS_MODEL "global-dynamic"
+
+/* config */
+#define CONFIG_XENO_UAPI_LEVEL 15
+
+/* config */
+/* #undef CONFIG_XENO_VALGRIND_API */
+
+/* config */
+#define CONFIG_XENO_VERSION_MAJOR 3
+
+/* config */
+#define CONFIG_XENO_VERSION_MINOR 1
+
+/* config */
+#define CONFIG_XENO_VERSION_STRING "3.1.2"
+
+/* config */
+/* #undef CONFIG_XENO_WORKAROUND_CONDVAR_PI */
+
+/* config */
+#define CONFIG_XENO_X86_VSYSCALL 1
 
 #ifdef __IN_XENO__
+
+/* Define to 1 if you have the `backtrace' function. */
+#define HAVE_BACKTRACE 1
+
+/* Define to 1 if you have the `clock_nanosleep' function. */
+#define HAVE_CLOCK_NANOSLEEP 1
+
+/* Define to 1 if you have the declaration of
+   `PTHREAD_ERRORCHECK_MUTEX_INITIALIZER_NP', and to 0 if you don't. */
+#define HAVE_DECL_PTHREAD_ERRORCHECK_MUTEX_INITIALIZER_NP 1
+
+/* Define to 1 if you have the declaration of `PTHREAD_PRIO_NONE', and to 0 if
+   you don't. */
+#define HAVE_DECL_PTHREAD_PRIO_NONE 1
+
+/* Define to 1 if you have the declaration of
+   `PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP', and to 0 if you don't. */
+#define HAVE_DECL_PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP 1
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
@@ -69,35 +129,71 @@
 /* Define to 1 if you have the `fork' function. */
 #define HAVE_FORK 1
 
-/* Define to 1 if you have the `ftruncate64' function. */
-#define HAVE_FTRUNCATE64 1
-
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
 
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
 
-/* Define to 1 if you have the `mmap64' function. */
-#define HAVE_MMAP64 1
-
 /* Define to 1 if you have the <mqueue.h> header file. */
 #define HAVE_MQUEUE_H 1
 
-/* config */
-/* #undef HAVE_OLD_SETAFFINITY */
+/* Define to 1 if you have the <obstack.h> header file. */
+#define HAVE_OBSTACK_H 1
+
+/* Define to 1 if you have the `pthread_atfork' function. */
+#define HAVE_PTHREAD_ATFORK 1
+
+/* Define to 1 if you have the `pthread_attr_setaffinity_np' function. */
+#define HAVE_PTHREAD_ATTR_SETAFFINITY_NP 1
+
+/* Define to 1 if you have the `pthread_condattr_getclock' function. */
+#define HAVE_PTHREAD_CONDATTR_GETCLOCK 1
 
 /* Define to 1 if you have the `pthread_condattr_setclock' function. */
 #define HAVE_PTHREAD_CONDATTR_SETCLOCK 1
 
+/* Define to 1 if you have the `pthread_getattr_np' function. */
+#define HAVE_PTHREAD_GETATTR_NP 1
+
+/* Define to 1 if you have the `pthread_mutexattr_getprioceiling' function. */
+#define HAVE_PTHREAD_MUTEXATTR_GETPRIOCEILING 1
+
+/* Define to 1 if you have the `pthread_mutexattr_getprotocol' function. */
+#define HAVE_PTHREAD_MUTEXATTR_GETPROTOCOL 1
+
+/* Define to 1 if you have the `pthread_mutexattr_setprioceiling' function. */
+#define HAVE_PTHREAD_MUTEXATTR_SETPRIOCEILING 1
+
 /* Define to 1 if you have the `pthread_mutexattr_setprotocol' function. */
 #define HAVE_PTHREAD_MUTEXATTR_SETPROTOCOL 1
+
+/* Define to 1 if you have the `pthread_mutexattr_setrobust' function. */
+#define HAVE_PTHREAD_MUTEXATTR_SETROBUST 1
+
+/* Define to 1 if you have the `pthread_mutexattr_setrobust_np' function. */
+#define HAVE_PTHREAD_MUTEXATTR_SETROBUST_NP 1
+
+/* Define to 1 if you have the `pthread_mutex_getprioceiling' function. */
+#define HAVE_PTHREAD_MUTEX_GETPRIOCEILING 1
+
+/* Define to 1 if you have the `pthread_mutex_setprioceiling' function. */
+#define HAVE_PTHREAD_MUTEX_SETPRIOCEILING 1
+
+/* Define to 1 if you have the `pthread_setaffinity_np' function. */
+#define HAVE_PTHREAD_SETAFFINITY_NP 1
+
+/* Define to 1 if you have the `pthread_setname_np' function. */
+#define HAVE_PTHREAD_SETNAME_NP 1
+
+/* Define to 1 if you have the `pthread_setschedprio' function. */
+#define HAVE_PTHREAD_SETSCHEDPRIO 1
 
 /* Define to 1 if you have the `pthread_spin_lock' function. */
 #define HAVE_PTHREAD_SPIN_LOCK 1
 
-/* config */
-#define HAVE_RECENT_SETAFFINITY 1
+/* Define to 1 if you have the `sched_getcpu' function. */
+#define HAVE_SCHED_GETCPU 1
 
 /* Define to 1 if you have the `shm_open' function. */
 #define HAVE_SHM_OPEN 1
@@ -123,27 +219,26 @@
 /* Define to 1 if you have the <sys/types.h> header file. */
 #define HAVE_SYS_TYPES_H 1
 
+/* config */
+#define HAVE_TLS 1
+
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
 
-/* config */
-/* #undef HAVE___THREAD */
-
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #define LT_OBJDIR ".libs/"
 
 /* Name of package */
 #define PACKAGE "xenomai"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "xenomai-help@gna.org"
+#define PACKAGE_BUGREPORT "xenomai@xenomai.org"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "Xenomai"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Xenomai 2.5.6"
+#define PACKAGE_STRING "Xenomai 3.1.2"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "xenomai"
@@ -152,19 +247,16 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2.5.6"
+#define PACKAGE_VERSION "3.1.2"
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "2.5.6"
-
-/* config */
-/* #undef XNARCH_ARM_TSC_TYPE */
+#define VERSION "3.1.2"
 
 /* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
    `char[]'. */
-/* #undef YYTEXT_POINTER */
+#define YYTEXT_POINTER 1
 
 #endif /* __IN_XENO__ */

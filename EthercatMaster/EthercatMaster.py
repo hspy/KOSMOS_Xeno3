@@ -778,7 +778,7 @@ class _EthercatCTN:
             (current_location, 
              [(Gen_Ethercatfile_path, '"-I%s"'%os.path.abspath(self.GetCTRoot().GetIECLibPath()))], 
              True))
-        LDFLAGS.append("-lethercat_rtdm -lrtdm")
+        LDFLAGS.append("-lethercat_rtdm")
         
         return LocationCFilesAndCFLAGS, LDFLAGS, extra_files
 

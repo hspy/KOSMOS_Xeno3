@@ -24,6 +24,7 @@
 
 from datetime import datetime
 from time import time as gettime
+from weakref import proxy
 import numpy
 
 import wx
@@ -385,11 +386,11 @@ class LogViewer(DebugViewer, wx.Panel):
         self.HasNewData = False
     
     def SetLogSource(self, log_source):
-        self.LogSource = log_source
+        self.LogSource = proxy(log_source) if log_source is not None else None
         self.CleanButton.Enable(self.LogSource is not None)
         if log_source is not None:
             self.ResetLogMessages()
-            self.RefreshView()
+            wx.CallAfter(self.RefreshView)
     
     def GetLogMessageFromSource(self, msgidx, level):
         if self.LogSource is not None:
