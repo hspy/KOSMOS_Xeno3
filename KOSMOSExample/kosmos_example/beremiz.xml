@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BeremizRoot URI_location="PYRO://192.168.0.11:3000">
+  <TargetType>
+    <Xenomai/>
+  </TargetType>
+  <Libraries Enable_Etherlab_Library="false" Enable_Motion_Library="false" Enable_opcua_Library="false"/>
+</BeremizRoot>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.plcopen.org/xml/tc6.xsd" xsi:schemaLocation="http://www.plcopen.org/xml/tc6.xsd">
+  <fileHeader companyName="KITECH" creationDateTime="2015-10-01T00:00:00" productVersion="0.0" productName="HMI SOCK"/>
+  <contentHeader name="BEREMIZ HMI SOCK" modificationDateTime="2015-10-01T00:00:00">
+    <coordinateInfo>
+      <fbd>
+        <scaling y="0" x="0"/>
+      </fbd>
+      <ld>
+        <scaling y="0" x="0"/>
+      </ld>
+      <sfc>
+        <scaling y="0" x="0"/>
+      </sfc>
+    </coordinateInfo>
+  </contentHeader>
+  <types>
+    <dataTypes>
+    </dataTypes>
+    <pous>
+    </pous>
+  </types>
+  <instances>
+    <configurations/>
+  </instances>
+</project>

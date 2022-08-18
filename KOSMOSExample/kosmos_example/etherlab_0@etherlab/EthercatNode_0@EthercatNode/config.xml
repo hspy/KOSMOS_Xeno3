@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<EtherCATConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EtherCATInfo.xsd">
+  <Config>
+    <Master>
+      <Info>
+        <Name></Name>
+        <Destination>00</Destination>
+        <Source>00</Source>
+      </Info>
+    </Master>
+    <Slave>
+      <Info>
+        <Name>NT 100-RE/ECS</Name>
+        <PhysAddr>0</PhysAddr>
+        <AutoIncAddr>0</AutoIncAddr>
+        <Physics></Physics>
+        <VendorId>68</VendorId>
+        <ProductCode>13</ProductCode>
+        <RevisionNo>0</RevisionNo>
+        <SerialNo>0</SerialNo>
+      </Info>
+    </Slave>
+  </Config>
+</EtherCATConfig>

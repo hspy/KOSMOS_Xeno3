@@ -1,0 +1,15 @@
+#
+# EtherCAT Master Kernel Modules
+#
+
+[Unit]
+Description=EtherCAT Master Kernel Modules
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/src/etherlab_deb/usr/sbin/ethercatctl start
+ExecStop=/usr/src/etherlab_deb/usr/sbin/ethercatctl stop
+
+[Install]
+WantedBy=multi-user.target

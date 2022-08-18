@@ -1,0 +1,5775 @@
+<?xml version="1.0"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.plcopen.org/xml/tc6.xsd" xsi:schemaLocation="http://www.plcopen.org/xml/tc6.xsd">
+  <fileHeader companyName="University of Seoul" creationDateTime="2015-10-01T00:00:00" productVersion="0.0" productName="OPC UA"/>
+  <contentHeader name="PLCopen TC4 OPC UA" modificationDateTime="2015-10-01T00:00:00">
+    <coordinateInfo>
+      <fbd>
+        <scaling y="0" x="0"/>
+      </fbd>
+      <ld>
+        <scaling y="0" x="0"/>
+      </ld>
+      <sfc>
+        <scaling y="0" x="0"/>
+      </sfc>
+    </coordinateInfo>
+  </contentHeader>
+  <types>
+    <dataTypes>
+      <dataType name="UASecurityMsgMode">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UASMM_BestAvailable"/>
+              <value name="UASMM_None"/>
+              <value name="UASMM_Sign"/>
+              <value name="UASMM_SignEncrypt"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+      <dataType name="UASecurityPolicy">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UASP_BestAvailable"/>
+              <value name="UASP_None"/>
+              <value name="UASP_Basic128Rsa15"/>
+              <value name="UASP_Basic256"/>
+              <value name="UASP_Basic256Sha256"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+      <dataType name="UATransportProfile">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UATP_UATcp"/>
+              <value name="UATP_WSHttpBinary"/>
+              <value name="UATP_WSHttpXmlOrBinary"/>
+              <value name="UATP_WSHttpXml"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+      <dataType name="UAUserIdentityTokenType">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UAUITT_Anonymous"/>
+              <value name="UAUITT_Username"/>
+              <value name="UAUITT_x509"/>
+              <value name="UAUITT_IssuedToken"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+      <dataType name="UAIdentifierType">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UAIT_Numeric"/>
+              <value name="UAIT_String"/>
+              <value name="UAIT_GUID"/>
+              <value name="UAIT_Opaque"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+	  <dataType name="UADeadbandType">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UADT_None"/>
+              <value name="UADT_Absolute"/>
+              <value name="UADT_Percent"/>
+            </values>
+          </enum>
+        </baseType>
+        <initialValue>
+          <simpleValue value="UADT_None"/>
+        </initialValue>
+      </dataType>
+      <dataType name="UAAttributeID">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UAAI_NodeID"/>
+              <value name="UAAI_NodeClass"/>
+              <value name="UAAI_BrowseName"/>
+              <value name="UAAI_DisplayName"/>
+              <value name="UAAI_Description"/>
+              <value name="UAAI_WriteMask"/>
+              <value name="UAAI_UserWriteMask"/>
+              <value name="UAAI_IsAbstract"/>
+              <value name="UAAI_Symmetric"/>
+              <value name="UAAI_InverseName"/>
+              <value name="UAAI_ContainsNoLoops"/>
+              <value name="UAAI_EventNotifier"/>
+              <value name="UAAI_Value"/>
+              <value name="UAAI_DataType"/>
+              <value name="UAAI_ValueRank"/>
+              <value name="UAAI_ArrayDimensions"/>
+              <value name="UAAI_AccessLevel"/>
+              <value name="UAAI_UserAccessLevel"/>
+              <value name="UAAI_MinimumSamplingInterval"/>
+              <value name="UAAI_Historizing"/>
+              <value name="UAAI_Executable"/>
+              <value name="UAAI_UserExecutable"/>
+            </values>
+          </enum>
+        </baseType>
+        <initialValue>
+          <simpleValue value="UAAI_NodeID"/>
+        </initialValue>
+      </dataType>
+	  <dataType name="UAConnectionStatus">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UACS_Connected"/>
+              <value name="UACS_ConnectionError"/>
+              <value name="UACS_Shutdown"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+      <dataType name="UAServerState">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UASS_Running"/>
+              <value name="UASS_Failed"/>
+              <value name="UASS_NoConfiguration"/>
+              <value name="UASS_Suspended"/>
+              <value name="UASS_Shutdown"/>
+              <value name="UASS_Test"/>
+              <value name="UASS_CommunicationFault"/>
+              <value name="UASS_Unknown"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+      <dataType name="UANodeClassMask">
+        <baseType>
+          <enum>
+            <values>
+              <value name="UANCM_None"/>
+              <value name="UANCM_Object"/>
+              <value name="UANCM_Variable"/>
+              <value name="UANCM_Method"/>
+              <value name="UANCM_ObjectType"/>
+              <value name="UANCM_VariableType"/>
+              <value name="UANCM_ReferenceType"/>
+              <value name="UANCM_DataType"/>
+              <value name="UANCM_View"/>
+              <value name="UANCM_All"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_VariantType">
+        <baseType>
+          <enum>
+            <values>
+              <value name="PlcOpen_VariantType_Boolaen"/>
+              <value name="PlcOpen_VariantType_Byte"/>
+              <value name="PlcOpen_VariantType_CharA"/>
+              <value name="PlcOpen_VariantType_Int16"/>
+              <value name="PlcOpen_VariantType_Int32"/>
+              <value name="PlcOpen_VariantType_UInt16"/>
+              <value name="PlcOpen_VariantType_UInt32"/>
+              <value name="PlcOpen_VariantType_Double"/>
+              <value name="PlcOpen_VariantType_Float"/>
+              <value name="PlcOpen_VariantType_StringA"/>
+              <value name="PlcOpen_VariantType_DateTime"/>
+              <value name="PlcOpen_VariantType_QualifiedName"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+      <dataType name="UAUserIdentityToken">
+        <baseType>
+          <struct>
+            <variable name="UserIdentityTokenType">
+              <type>
+                <derived name="UAUserIdentityTokenType"/>
+              </type>
+            </variable>
+            <variable name="TokenParam1">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="TokenParam2">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="UASessionConnectInfo">
+        <baseType>
+          <struct>
+            <variable name="SessionName">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="ApplicationName">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="SecurityMsgMode">
+              <type>
+                <derived name="UASecurityMsgMode"/>
+              </type>
+            </variable>
+            <variable name="SecurityPolicy">
+              <type>
+                <derived name="UASecurityPolicy"/>
+              </type>
+            </variable>
+            <variable name="CertificateStore">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="ClientCertificateName">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="ServerUri">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="CheckServerCertificate">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="TransportProfile">
+              <type>
+                <derived name="UATransportProfile"/>
+              </type>
+            </variable>
+            <variable name="UserIdentityToken">
+              <type>
+                <derived name="UAUserIdentityToken"/>
+              </type>
+            </variable>
+            <variable name="VendorSpecificParameter">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="SessionTimeout">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="MonitorConnection">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="LocaleIDs">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="UANODEID">
+        <baseType>
+          <struct>
+            <variable name="NamespaceIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Identifier">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="IdentifierType">
+              <type>
+                <derived name="UAIdentifierType"/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="UAQualifiedName">
+        <baseType>
+          <struct>
+            <variable name="NamespaceIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Name">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+	  <dataType name="UAMONITORINGPARAMETER">
+        <baseType>
+          <struct>
+            <variable name="SamplingInterval">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="QueueSize">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="DiscardOldest">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="DeadbandType">
+              <type>
+                <derived name="UADeadbandType"/>
+              </type>
+            </variable>
+            <variable name="Deadband">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="UALocalizedText">
+        <baseType>
+          <struct>
+            <variable name="Locale">
+              <type>
+                <derived name="_UALocaleType"/>
+              </type>
+            </variable>
+            <variable name="Text">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="UANodeInformation">
+        <baseType>
+          <struct>
+            <variable name="AccessLevel">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+            <variable name="ArrayDimension">
+              <type>
+                <derived name="_UA_UDINT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="BrowseName">
+              <type>
+                <derived name="UAQualifiedName"/>
+              </type>
+            </variable>
+            <variable name="ContainsNoLoops">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="DataType">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="Description">
+              <type>
+                <derived name="UALocalizedText"/>
+              </type>
+            </variable>
+            <variable name="DisplayName">
+              <type>
+                <derived name="UALocalizedText"/>
+              </type>
+            </variable>
+            <variable name="EventNotifier">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+            <variable name="Executable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Historizing">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="InverseName">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="IsAbstract">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="MinimumSamplingInterval">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NodeClass">
+              <type>
+                <derived name="UANodeClassMask"/>
+              </type>
+            </variable>
+            <variable name="Symmetric">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="UserAccessLevel">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+            <variable name="UserExecutable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="UserWriteMask">
+              <type>
+                <UDINT/>
+              </type>
+            </variable>
+            <variable name="ValueRank">
+              <type>
+                <DINT/>
+              </type>
+            </variable>
+            <variable name="WriteMask">
+              <type>
+                <UDINT/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>	  
+      <dataType name="UAINDEXRANGE">
+        <baseType>
+          <struct>
+            <variable name="StartIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="EndIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="UANODEADDITIONALINFO">
+        <baseType>
+          <struct>
+            <variable name="AttributeID">
+              <type>
+                <derived name="UAAttributeID"/>
+              </type>
+            </variable>
+            <variable name="IndexRangeCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="IndexRange">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UAINDEXRANGE"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_BOOL_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <BOOL/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_UINT_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <UINT/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_UDINT_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <UDINT/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_DT_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <string/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_STRING_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <string/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_DWORD_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_UANODEID_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UANODEID"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_MONITORINGPARAMETER_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UAMONITORINGPARAMETER"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_NODEADDITIONALINFO_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UANODEADDITIONALINFO"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+	  <dataType name="_UA_METHODARGUMENT_ArrayType">
+        <baseType>
+          <struct>
+            <variable name="Elements">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="_UA_METHODARGUMENT"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UALocaleType">
+        <baseType>
+          <struct>
+            <variable name="Locale">
+              <type>
+                <array>
+                  <dimension lower="1" upper="5"/>
+                  <baseType>
+                    <string/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_METHODARGUMENT">
+        <baseType>
+          <struct>
+            <variable name="VariantType">
+              <type>
+                <derived name="_UA_VariantType"/>
+              </type>
+            </variable>
+            <variable name="Value">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+      <dataType name="_UA_MethodParameter">
+        <baseType>
+          <struct>
+            <variable name="NoOfArgument">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Arguments">
+              <type>
+                <derived name="_UA_METHODARGUMENT_ArrayType"/>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+    </dataTypes>
+    <pous>
+      <pou name="UA_Connect" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="ServerEndpointUrl">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="SessionConnectInfo">
+              <type>
+                <derived name="UASessionConnectInfo"/>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="Pre_ServerEndpointUrl">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Pre_ServerEndpointUrl0">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Pre_SessionConnectInfo">
+              <type>
+                <derived name="UASessionConnectInfo"/>
+              </type>
+            </variable>
+            <variable name="Pre_SessionConnectInfo0">
+              <type>
+                <derived name="UASessionConnectInfo"/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_ConnectFB(UA_CONNECT*);
+  __UA_ConnectFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_Disconnect" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_DisconnectFB(UA_DISCONNECT*);
+  __UA_DisconnectFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_NamespaceGetIndexList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NamespaceUrisCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="NamespaceUris">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="NamespaceIndexes">
+              <type>
+                <derived name="_UA_UINT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="ErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="1" upper="50"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NamespaceUrisCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NamespaceUrisCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NamespaceUris">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NamespaceUris0">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NamespaceIndexes">
+              <type>
+                <derived name="_UA_UINT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_NamespaceGetIndexListFB(UA_NAMESPACEGETINDEXLIST*);
+  __UA_NamespaceGetIndexListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_NodeGetHandleList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NodeIDCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="NodeIDs">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NodeErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeIDCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeIDCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeIDs">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeIDs0">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_NodeGetHandleListFB(UA_NODEGETHANDLELIST*);
+  __UA_NodeGetHandleListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_NodeReleaseHandleList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NodeHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NodeErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdlCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdls0">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_NodeReleaseHandleListFB(UA_NODERELEASEHANDLELIST*);
+  __UA_NodeReleaseHandleListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_NodeGetInformation" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NodeID">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="NodeInfo">
+              <type>
+                <derived name="UANodeInformation"/>
+              </type>
+            </variable>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="NodeGetInfoErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="0" upper="21"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="State">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeID">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeID0">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeInfo">
+              <type>
+                <derived name="UANodeInformation"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeGetInfoErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="0" upper="21"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_NodeGetInformationFB(UA_NODEGETINFORMATION*);
+  __UA_NodeGetInformationFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_SubscriptionCreate" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="PublishingEnable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Priority">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <inOutVars>
+            <variable name="PublishingInterval">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_PublishingEnable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_PublishingEnable0">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_Priority">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+            <variable name="Pre_Priority0">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_PublishingInterval">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_PublishingInterval0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_PublishingInterval1">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_SubscriptionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorID0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_SubscriptionCreateFB(UA_SUBSCRIPTIONCREATE*);
+  __UA_SubscriptionCreateFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_SubscriptionDelete" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_SubscriptionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_SubscriptionDeleteFB(UA_SUBSCRIPTIONDELETE*);
+  __UA_SubscriptionDeleteFB(data__);
+  #endif
+
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_SubscriptionProcessed" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_SubscriptionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Published">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_Published">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_SubscriptionProcessedFB(UA_SUBSCRIPTIONPROCESSED*);
+  __UA_SubscriptionProcessedFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_MonitoredItemAddList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_SubscriptionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="NodeHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_NodeHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdlCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdls0">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="NodeAddInfos">
+              <type>
+                <derived name="_UA_NodeAdditionalInfo_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_NodeAddInfos">
+              <type>
+                <derived name="_UA_NodeAdditionalInfo_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeAddInfos0">
+              <type>
+                <derived name="_UA_NodeAdditionalInfo_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="NodeErrorIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_NodeErrorIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="MonitoredItemHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_MonitoredItemHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inOutVars>
+            <variable name="Variables">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="Pre_Variables">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_Variables0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_Variables1">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </localVars>
+          <inOutVars>
+            <variable name="MonitoringSettings">
+              <type>
+                <derived name="_UA_MONITORINGPARAMETER_ArrayType"/>
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="Pre_MonitoringSettings">
+              <type>
+                <derived name="_UA_MONITORINGPARAMETER_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_MonitoringSettings0">
+              <type>
+                <derived name="_UA_MONITORINGPARAMETER_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_MonitoringSettings1">
+              <type>
+                <derived name="_UA_MONITORINGPARAMETER_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inOutVars>
+            <variable name="ValuesChanged">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="Pre_ValuesChanged">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_ValuesChanged0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_ValuesChanged1">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </localVars>
+          <inOutVars>
+            <variable name="RemainingValueCount">
+              <type>
+                <derived name="_UA_UINT_ArrayType"/>
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="Pre_RemainingValueCount">
+              <type>
+                <derived name="_UA_UINT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_RemainingValueCount0">
+              <type>
+                <derived name="_UA_UINT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_RemainingValueCount1">
+              <type>
+                <derived name="_UA_UINT_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inOutVars>
+            <variable name="TimeStamps">
+              <type>
+                <derived name="_UA_DT_ArrayType"/>
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="Pre_TimeStamps">
+              <type>
+                <derived name="_UA_DT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_TimeStamps0">
+              <type>
+                <derived name="_UA_DT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_TimeStamps1">
+              <type>
+                <derived name="_UA_DT_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inOutVars>
+            <variable name="NodeQualityIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="Pre_NodeQualityIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeQualityIDs0">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeQualityIDs1">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_MonitoredItemAddListFB(UA_MONITOREDITEMADDLIST*);
+  __UA_MonitoredItemAddListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_MonitoredItemRemoveList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_SubscriptionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="MonitoredItemHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_MonitoredItemHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_MonitoredItemHdlCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="MonitoredItemHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_MonitoredItemHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_MonitoredItemHdls0">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="NodeErrorIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_NodeErrorIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_MonitoredItemRemoveListFB(UA_MONITOREDITEMREMOVELIST*);
+  __UA_MonitoredItemRemoveListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_MonitoredItemOperateList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_SubscriptionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_SubscriptionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="MonitoredItemHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_MonitoredItemHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_MonitoredItemHdlCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="MonitoredItemHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_MonitoredItemHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_MonitoredItemHdls0">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Published">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_Published">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_MonitoredItemOperateListFB(UA_MONITOREDITEMOPERATELIST*);
+  __UA_MonitoredItemOperateListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_ReadList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NodeHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="NodeAddInfos">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UANODEADDITIONALINFO"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NodeErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="TimeStamps">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <string/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+		  </outputVars>	
+		  <inOutVars>
+			<variable name="Variables">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>
+          </inOutVars>					
+          <localVars>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdlCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdls0">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeAddInfos">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UANODEADDITIONALINFO"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="Pre_NodeAddInfos0">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UANODEADDITIONALINFO"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="Pre_TimeStamps">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <string/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="Pre_Variables">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_ReadListFB(UA_READLIST*);
+  __UA_ReadListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_WriteList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NodeHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="NodeAddInfos">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UANODEADDITIONALINFO"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+		  </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="NodeErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+		  </outputVars>
+		  <inOutVars>
+			<variable name="Variables">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>	
+		  </inOutVars>		  
+          <localVars>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdlCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeHdls0">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeAddInfos">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UANODEADDITIONALINFO"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="Pre_NodeAddInfos0">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <derived name="UANODEADDITIONALINFO"/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Variables">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_Variables0">
+               <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>			
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeErrorIDs">
+              <type>
+                <array>
+                  <dimension lower="1" upper="20"/>
+                  <baseType>
+                    <DWORD/>
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_WriteListFB(UA_WRITELIST*);
+  __UA_WriteListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_MethodGetHandleList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="NodeIDCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_NodeIDCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_NodeIDCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="ObjectNodeIDs">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_ObjectNodeIDs">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_ObjectNodeIDs0">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="MethodNodeIDs">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_MethodNodeIDs">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_MethodNodeIDs0">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="MethodHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_MethodHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ErrorIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_MethodGetHandleListFB(UA_METHODGETHANDLELIST*);
+  __UA_MethodGetHandleListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_MethodReleaseHandleList" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="MethodHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_MethodHdlCount">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Pre_MethodHdlCount0">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="MethodHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_MethodHdls">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_MethodHdls0">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ErrorIDs">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Pre_ErrorIDs0">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_MethodReleaseHandleListFB(UA_METHODRELEASEHANDLELIST*);
+  __UA_MethodReleaseHandleListFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="UA_MethodCall" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="MethodHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_MethodHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_MethodHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inOutVars>
+            <variable name="InputArguments">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="Pre_InputArguments">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+            <variable name="Pre_InputArguments0">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+            <variable name="Pre_InputArguments1">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+          </localVars>
+          <inOutVars>
+            <variable name="OutputArguments">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="Pre_OutputArguments">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+            <variable name="Pre_OutputArguments0">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+            <variable name="Pre_OutputArguments1">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_MethodCallFB(UA_METHODCALL*);
+  __UA_MethodCallFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+	  <pou name="UA_ConnectionGetStatus" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Execute">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_ConnectionHdl">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionHdl0">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="Pre_Timeout">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+            <variable name="Pre_Timeout0">
+              <type>
+                <TIME/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="ConnectionStatus">
+              <type>
+                <derived name="UAConnectionStatus"/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ConnectionStatus">
+              <type>
+                <derived name="UAConnectionStatus"/>
+              </type>
+            </variable>
+            <variable name="Pre_ConnectionStatus0">
+              <type>
+                <derived name="UAConnectionStatus"/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="ServerState">
+              <type>
+                <derived name="UAServerState"/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ServerState">
+              <type>
+                <derived name="UAServerState"/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="ServiceLevel">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ServiceLevel">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+          </localVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Error">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Pre_ErrorID">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void __UA_ConnectionGetStatusFB(UA_CONNECTIONGETSTATUS*);
+  __UA_ConnectionGetStatusFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+	  <pou name="_UA_GetDWORDFromArray" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="DWORDarray">
+              <type>
+                <derived name="_UA_DWORD_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="index">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="DWORDvalue">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	DWORDvalue:=DWORDarray.Elements[index];
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+  Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+	  <pou name="_UA_GetUINTFromArray" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="UINTarray">
+              <type>
+                <derived name="_UA_UINT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="index">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="UINTvalue">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	UINTvalue:=UINTarray.Elements[index];
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+  Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetConnectionStatus" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ConnectionStatus">
+              <type>
+                <derived name="UAConnectionStatus"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="result">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	CASE ConnectionStatus OF
+		UACS_Connected: result:='UACS_Connected';
+		UACS_ConnectionError: result:='UACS_ConnectionError';
+		UACS_Shutdown: result:='UACS_Shutdown';
+	ELSE 
+		result:='UACS_ConnectionError';
+	END_CASE;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+  Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetServerState" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ServerState">
+              <type>
+                <derived name="UAServerState"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="result">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	CASE ServerState OF
+		UASS_Running: result:='UASS_Running';
+		UASS_Failed: result:='UASS_Failed';
+		UASS_NoConfiguration: result:='UASS_NoConfiguration';
+		UASS_Suspended: result:='UASS_Suspended';
+		UASS_Shutdown: result:='UASS_Shutdown';
+		UASS_Test: result:='UASS_Test';
+		UASS_CommunicationFault: result:='UASS_CommunicationFault';
+		UASS_Unknown: result:='UASS_Unknown';
+	ELSE 
+		result:='UASS_Unknown';
+	END_CASE;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+  Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetSessionConnectInfo" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="SessionName">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="ApplicationName">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="SecurityMsgMode">
+              <type>
+                <derived name="UASecurityMsgMode"/>
+              </type>
+            </variable>
+            <variable name="SecurityPolicy">
+              <type>
+                <derived name="UASecurityPolicy"/>
+              </type>
+            </variable>
+            <variable name="CertificateStore">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="ClientCertificateName">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="ServerUri">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="CheckServerCertificate">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="TransportProfile">
+              <type>
+                <derived name="UATransportProfile"/>
+              </type>
+            </variable>
+            <variable name="UserIdentityToken">
+              <type>
+                <derived name="UAUserIdentityToken"/>
+              </type>
+            </variable>
+            <variable name="VendorSpecificParameter">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="SessionTimeout">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="MonitorConnection">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="LocaleIDs">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="SessionConnectInfo">
+              <type>
+                <derived name="UASessionConnectInfo"/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	SessionConnectInfo.SessionName:=SessionName;
+	SessionConnectInfo.ApplicationName:=ApplicationName;
+	SessionConnectInfo.SecurityMsgMode:=SecurityMsgMode;
+	SessionConnectInfo.SecurityPolicy:=SecurityPolicy;
+	SessionConnectInfo.CertificateStore:=CertificateStore;
+	SessionConnectInfo.ClientCertificateName:=ClientCertificateName;
+	SessionConnectInfo.ServerUri:=ServerUri;
+	SessionConnectInfo.CheckServerCertificate:=CheckServerCertificate;
+	SessionConnectInfo.TransportProfile:=TransportProfile;
+	SessionConnectInfo.UserIdentityToken:=UserIdentityToken;
+	SessionConnectInfo.VendorSpecificParameter:=VendorSpecificParameter;
+	SessionConnectInfo.SessionTimeout:=SessionTimeout;
+	SessionConnectInfo.MonitorConnection:=MonitorConnection;
+	SessionConnectInfo.LocaleIDs:=LocaleIDs;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+  Done:=FALSE;
+END_IF;
+]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetUserIdentityToken" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="UserIdentityTokenType">
+              <type>
+                <derived name="UAUserIdentityTokenType"/>
+              </type>
+            </variable>
+            <variable name="TokenParam1">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="TokenParam2">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="UserIdentityToken">
+              <type>
+                <derived name="UAUserIdentityToken"/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	UserIdentityToken.UserIdentityTokenType:=UserIdentityTokenType;
+	UserIdentityToken.TokenParam1:=TokenParam1;
+	UserIdentityToken.TokenParam2:=TokenParam2;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;
+]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetNamespaceUriArray" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <outputVars>
+            <variable name="NamespaceUris">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="NamespaceUri1">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri2">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri3">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri4">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri5">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri6">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri7">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri8">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri9">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri10">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri11">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri12">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri13">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri14">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri15">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri16">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri17">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri18">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri19">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NamespaceUri20">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	NamespaceUris.Elements[1] := NamespaceUri1;
+	NamespaceUris.Elements[2] := NamespaceUri2;
+	NamespaceUris.Elements[3] := NamespaceUri3;
+	NamespaceUris.Elements[4] := NamespaceUri4;
+	NamespaceUris.Elements[5] := NamespaceUri5;
+	NamespaceUris.Elements[6] := NamespaceUri6;
+	NamespaceUris.Elements[7] := NamespaceUri7;
+	NamespaceUris.Elements[8] := NamespaceUri8;
+	NamespaceUris.Elements[9] := NamespaceUri9;
+	NamespaceUris.Elements[10] := NamespaceUri10;
+	NamespaceUris.Elements[11] := NamespaceUri11;
+	NamespaceUris.Elements[12] := NamespaceUri12;
+	NamespaceUris.Elements[13] := NamespaceUri13;
+	NamespaceUris.Elements[14] := NamespaceUri14;
+	NamespaceUris.Elements[15] := NamespaceUri15;
+	NamespaceUris.Elements[16] := NamespaceUri16;
+	NamespaceUris.Elements[17] := NamespaceUri17;
+	NamespaceUris.Elements[18] := NamespaceUri18;
+	NamespaceUris.Elements[19] := NamespaceUri19;
+	NamespaceUris.Elements[20] := NamespaceUri20;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+  Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetNamespaceIndexResult" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="NamespaceIndexes">
+              <type>
+                <derived name="_UA_UINT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Index">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="NamespaceIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	Done:=FALSE;
+	NamespaceIndex := NamespaceIndexes.Elements[index];
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+  Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetNodeID" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="NamespaceIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Identifier">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="IdentifierType">
+              <type>
+                <derived name="UAIdentifierType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="NodeID">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	NodeID.NamespaceIndex := NamespaceIndex;
+	NodeID.Identifier := Identifier;
+	NodeID.IdentifierType := IdentifierType;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+  Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetNodeIDArrayFromOne" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <outputVars>
+            <variable name="NodeIDs">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="NodeID1">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	NodeIDs.Elements[1] := NodeID1;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetNodeIDArray" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <outputVars>
+            <variable name="NodeIDs">
+              <type>
+                <derived name="_UA_UANODEID_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="NodeID1">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID2">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID3">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID4">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID5">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID6">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID7">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID8">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID9">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID10">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID11">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID12">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID13">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID14">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID15">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID16">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID17">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID18">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID19">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="NodeID20">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>			
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	NodeIDs.Elements[1] := NodeID1;
+	NodeIDs.Elements[2] := NodeID2;
+	NodeIDs.Elements[3] := NodeID3;
+	NodeIDs.Elements[4] := NodeID4;
+	NodeIDs.Elements[5] := NodeID5;
+	NodeIDs.Elements[6] := NodeID6;
+	NodeIDs.Elements[7] := NodeID7;
+	NodeIDs.Elements[8] := NodeID8;
+	NodeIDs.Elements[9] := NodeID9;
+	NodeIDs.Elements[10] := NodeID10;
+	NodeIDs.Elements[11] := NodeID11;
+	NodeIDs.Elements[12] := NodeID12;
+	NodeIDs.Elements[13] := NodeID13;
+	NodeIDs.Elements[14] := NodeID14;
+	NodeIDs.Elements[15] := NodeID15;
+	NodeIDs.Elements[16] := NodeID16;
+	NodeIDs.Elements[17] := NodeID17;
+	NodeIDs.Elements[18] := NodeID18;
+	NodeIDs.Elements[19] := NodeID19;
+	NodeIDs.Elements[20] := NodeID20;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetNodeAdditionalInfo" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="NodeInfo">
+              <type>
+                <derived name="UANodeInformation"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="AccessLevel">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+            <variable name="ArrayDimension">
+              <type>
+                <derived name="_UA_UDINT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="BrowseName">
+              <type>
+                <derived name="UAQualifiedName"/>
+              </type>
+            </variable>
+            <variable name="ContainsNoLoops">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="DataType">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+            <variable name="Description">
+              <type>
+                <derived name="UALocalizedText"/>
+              </type>
+            </variable>
+            <variable name="DisplayName">
+              <type>
+                <derived name="UALocalizedText"/>
+              </type>
+            </variable>
+            <variable name="EventNotifier">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+            <variable name="Executable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Historizing">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="InverseName">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="IsAbstract">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="MinimumSamplingInterval">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="NodeClass">
+              <type>
+                <derived name="UANodeClassMask"/>
+              </type>
+            </variable>
+            <variable name="Symmetric">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="UserAccessLevel">
+              <type>
+                <BYTE/>
+              </type>
+            </variable>
+            <variable name="UserExecutable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="UserWriteMask">
+              <type>
+                <UDINT/>
+              </type>
+            </variable>
+            <variable name="ValueRank">
+              <type>
+                <DINT/>
+              </type>
+            </variable>
+            <variable name="WriteMask">
+              <type>
+                <UDINT/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	AccessLevel:=NodeInfo.AccessLevel;
+	ArrayDimension:=NodeInfo.ArrayDimension;
+	BrowseName:=NodeInfo.BrowseName;
+	ContainsNoLoops:=NodeInfo.ContainsNoLoops;
+	DataType:=NodeInfo.DataType;
+	Description:=NodeInfo.Description;
+	DisplayName:=NodeInfo.DisplayName;
+	EventNotifier:=NodeInfo.EventNotifier;
+	Executable:=NodeInfo.Executable;
+	Historizing:=NodeInfo.Historizing;
+	InverseName:=NodeInfo.InverseName;
+	IsAbstract:=NodeInfo.IsAbstract;
+	MinimumSamplingInterval:=NodeInfo.MinimumSamplingInterval;
+	NodeClass:=NodeInfo.NodeClass;
+	Symmetric:=NodeInfo.Symmetric;
+	UserAccessLevel:=NodeInfo.UserAccessLevel;
+	UserExecutable:=NodeInfo.UserExecutable;
+	UserWriteMask:=NodeInfo.UserWriteMask;
+	ValueRank:=NodeInfo.ValueRank;
+	WriteMask:=NodeInfo.WriteMask;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetQualifiedName" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="QualifiedName">
+              <type>
+                <derived name="UAQualifiedName"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="NamespaceIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Name">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	NamespaceIndex:=QualifiedName.NamespaceIndex;
+	Name:=QualifiedName.Name;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetLocalizedTextResult" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="LocalizedText">
+              <type>
+                <derived name="UALocalizedText"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Locale">
+              <type>
+                <derived name="_UALocaleType"/>
+              </type>
+            </variable>
+            <variable name="Text">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	Locale:=LocalizedText.Locale;
+	Text:=LocalizedText.Text;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetArrayDimesionResult" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="ArrayDimension">
+              <type>
+                <derived name="_UA_UDINT_ArrayType"/>
+              </type>
+            </variable>
+            <variable name="Index">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="ArrayDimensionResult">
+              <type>
+                <UDINT/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	ArrayDimensionResult:=ArrayDimension.Elements[Index];
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetNodeIDResult" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="NodeID">
+              <type>
+                <derived name="UANODEID"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="NamespaceIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="IdentifierType">
+              <type>
+                <derived name="UAIdentifierType"/>
+              </type>
+            </variable>
+            <variable name="Identifier">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	NamespaceIndex:=NodeID.NamespaceIndex;
+	IdentifierType:=NodeID.IdentifierType;
+	Identifier:=NodeID.Identifier;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetLocaleResult" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="Locale">
+              <type>
+                <derived name="_UALocaleType"/>
+              </type>
+            </variable>
+            <variable name="Index">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="LocaleResult">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	LocaleResult:=Locale.Locale[Index];
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>	  
+      <pou name="_UA_GetVariableValue" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Trigm1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+		    <variable name="Index">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Variables">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Result">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	Result := Variables.Elements[index];
+	Done := TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetVariableArray" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <outputVars>
+            <variable name="Variables">
+              <type>
+                <derived name="_UA_STRING_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="Variable1">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable2">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable3">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable4">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable5">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable6">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable7">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable8">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable9">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable10">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable11">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable12">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable13">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable14">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable15">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable16">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable17">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable18">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable19">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="Variable20">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	Variables.Elements[1] := Variable1;
+	Variables.Elements[2] := Variable2;
+	Variables.Elements[3] := Variable3;
+	Variables.Elements[4] := Variable4;
+	Variables.Elements[5] := Variable5;
+	Variables.Elements[6] := Variable6;
+	Variables.Elements[7] := Variable7;
+	Variables.Elements[8] := Variable8;
+	Variables.Elements[9] := Variable9;
+	Variables.Elements[10] := Variable10;
+	Variables.Elements[11] := Variable11;
+	Variables.Elements[12] := Variable12;
+	Variables.Elements[13] := Variable13;
+	Variables.Elements[14] := Variable14;
+	Variables.Elements[15] := Variable15;
+	Variables.Elements[16] := Variable16;
+	Variables.Elements[17] := Variable17;
+	Variables.Elements[18] := Variable18;
+	Variables.Elements[19] := Variable19;
+	Variables.Elements[20] := Variable20;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetMonitoringParameter" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="SamplingInterval">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="QueueSize">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="DiscardOldest">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="DeadbandType">
+              <type>
+                <derived name="UADeadbandType"/>
+              </type>
+            </variable>
+            <variable name="Deadband">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="MonitoringParameter">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	MonitoringParameter.SamplingInterval:=SamplingInterval;
+	MonitoringParameter.QueueSize:=QueueSize;
+	MonitoringParameter.DiscardOldest:=DiscardOldest;
+	MonitoringParameter.DeadbandType:=DeadbandType;
+	MonitoringParameter.Deadband:=Deadband;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetMonitoringParameterArray" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <outputVars>
+            <variable name="MonitoringParameters">
+              <type>
+                <derived name="_UA_MONITORINGPARAMETER_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="MonitoringParameter1">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter2">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter3">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter4">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter5">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter6">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter7">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter8">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter9">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter10">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter11">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter12">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter13">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter14">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter15">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter16">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter17">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter18">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter19">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+            <variable name="MonitoringParameter20">
+              <type>
+                <derived name="UAMONITORINGPARAMETER"/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	MonitoringParameters.Elements[1]:=MonitoringParameter1;
+	MonitoringParameters.Elements[2]:=MonitoringParameter2;
+	MonitoringParameters.Elements[3]:=MonitoringParameter3;
+	MonitoringParameters.Elements[4]:=MonitoringParameter4;
+	MonitoringParameters.Elements[5]:=MonitoringParameter5;
+	MonitoringParameters.Elements[6]:=MonitoringParameter6;
+	MonitoringParameters.Elements[7]:=MonitoringParameter7;
+	MonitoringParameters.Elements[8]:=MonitoringParameter8;
+	MonitoringParameters.Elements[9]:=MonitoringParameter9;
+	MonitoringParameters.Elements[10]:=MonitoringParameter10;
+	MonitoringParameters.Elements[11]:=MonitoringParameter11;
+	MonitoringParameters.Elements[12]:=MonitoringParameter12;
+	MonitoringParameters.Elements[13]:=MonitoringParameter13;
+	MonitoringParameters.Elements[14]:=MonitoringParameter14;
+	MonitoringParameters.Elements[15]:=MonitoringParameter15;
+	MonitoringParameters.Elements[16]:=MonitoringParameter16;
+	MonitoringParameters.Elements[17]:=MonitoringParameter17;
+	MonitoringParameters.Elements[18]:=MonitoringParameter18;
+	MonitoringParameters.Elements[19]:=MonitoringParameter19;
+	MonitoringParameters.Elements[20]:=MonitoringParameter20;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetMethodArgument" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="VariantType">
+              <type>
+                <derived name="_UA_VariantType"/>
+              </type>
+            </variable>
+            <variable name="Value">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="MethodArgument">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	MethodArgument.VariantType := VariantType;
+	MethodArgument.Value := Value;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetValuesFromMethodArgument" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="VariantType">
+              <type>
+                <derived name="_UA_VariantType"/>
+              </type>
+            </variable>
+            <variable name="Value">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="MethodArgument">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	VariantType := MethodArgument.VariantType;
+	Value := MethodArgument.Value;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetMethodParameter" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="NoOfArgument">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Arguments">
+              <type>
+                <derived name="_UA_METHODARGUMENT_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="MethodParameter">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	MethodParameter.NoOfArgument := NoOfArgument;
+	MethodParameter.Arguments := Arguments;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetValuesFromMethodParameter" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <outputVars>
+            <variable name="NoOfArgument">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="Arguments">
+              <type>
+                <derived name="_UA_METHODARGUMENT_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="MethodParameter">
+              <type>
+                <derived name="_UA_MethodParameter"/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	NoOfArgument := MethodParameter.NoOfArgument;
+	Arguments := MethodParameter.Arguments;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetMethodArgumentArray" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <outputVars>
+            <variable name="MethodArgumentArray">
+              <type>
+                <derived name="_UA_METHODARGUMENT_ArrayType"/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="MethodArgument1">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument2">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument3">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument4">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument5">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument6">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument7">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument8">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument9">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument10">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument11">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument12">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument13">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument14">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument15">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument16">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument17">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument18">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument19">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+            <variable name="MethodArgument20">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	MethodArgumentArray.Elements[1] := MethodArgument1;
+	MethodArgumentArray.Elements[2] := MethodArgument2;
+	MethodArgumentArray.Elements[3] := MethodArgument3;
+	MethodArgumentArray.Elements[4] := MethodArgument4;
+	MethodArgumentArray.Elements[5] := MethodArgument5;
+	MethodArgumentArray.Elements[6] := MethodArgument6;
+	MethodArgumentArray.Elements[7] := MethodArgument7;
+	MethodArgumentArray.Elements[8] := MethodArgument8;
+	MethodArgumentArray.Elements[9] := MethodArgument9;
+	MethodArgumentArray.Elements[10] := MethodArgument10;
+	MethodArgumentArray.Elements[11] := MethodArgument11;
+	MethodArgumentArray.Elements[12] := MethodArgument12;
+	MethodArgumentArray.Elements[13] := MethodArgument13;
+	MethodArgumentArray.Elements[14] := MethodArgument14;
+	MethodArgumentArray.Elements[15] := MethodArgument15;
+	MethodArgumentArray.Elements[16] := MethodArgument16;
+	MethodArgumentArray.Elements[17] := MethodArgument17;
+	MethodArgumentArray.Elements[18] := MethodArgument18;
+	MethodArgumentArray.Elements[19] := MethodArgument19;
+	MethodArgumentArray.Elements[20] := MethodArgument20;
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetMethodArgumentFromArray" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="Index">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="MethodArgumentArray">
+              <type>
+                <derived name="_UA_METHODARGUMENT_ArrayType"/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="MethodArgument">
+              <type>
+                <derived name="_UA_METHODARGUMENT"/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[IF Enable=TRUE THEN
+	MethodArgument := MethodArgumentArray.Elements[Index];
+	Done:=TRUE;
+END_IF;
+IF Enable=FALSE THEN
+	Done:=FALSE;
+END_IF;]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetMonitoredItemVariableValue" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="GlobalIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="LocalIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Value">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="Trigged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="State">
+              <type>
+                <DWORD/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void ___UA_GetMonitoredItemVariableValueFB(_UA_GETMONITOREDITEMVARIABLEVALUE*);
+  ___UA_GetMonitoredItemVariableValueFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>
+      <pou name="_UA_GetMonitoredItemValuesChangedValue" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="Enable">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="Done">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="Busy">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+          <inputVars>
+            <variable name="GlobalIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+            <variable name="LocalIndex">
+              <type>
+                <UINT/>
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="ValueChanged">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </outputVars>
+        </interface>
+        <body>
+          <ST>
+<![CDATA[{{
+  #ifdef _ENABLE_OPC_UA_CLIENT
+  extern void ___UA_GetMonitoredItemValuesChangedValueFB(_UA_GETMONITOREDITEMVALUESCHANGEDVALUE*);
+  ___UA_GetMonitoredItemValuesChangedValueFB(data__);
+  #endif
+}}]]>
+          </ST>
+        </body>
+      </pou>	  
+	</pous>
+  </types>
+ <instances>
+    <configurations/>
+  </instances>
+</project>
